@@ -38,6 +38,7 @@ import {
   funcionEnter,
 } from "../utils/clima.js";
 import { onAuthStateChanged } from "firebase/auth";
+import {auth} from '@/firebase/config'
 import LogIn from "./LogIn.vue";
 
 export default {
