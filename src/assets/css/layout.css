@@ -1,0 +1,23 @@
+/* Header, sidebar, main layout */
+.header {
+    width: 100%;
+    background: rgb(255 255 255 / 15%);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 12px 12px;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 220px;
+    height: 100%;
+    background: rgb(0 0 0 / 70%);
+    backdrop-filter: blur(6px);
+    transition: left 0.3s ease;
+    padding-top: 5rem;
+    z-index: 1000;
+}

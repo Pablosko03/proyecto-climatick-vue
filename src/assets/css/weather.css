@@ -1,0 +1,20 @@
+/* Clima: iconos, contenedores, pronóstico */
+.datos-clima {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.hoy {
+    flex: 1;
+    background: rgb(255 255 255 / 15%);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 12px 24px rgb(0 0 0 / 20%);
+}
+
+/* Más estilos de clima... */
