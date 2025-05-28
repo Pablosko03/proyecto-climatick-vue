@@ -9,11 +9,14 @@
       placeholder="Introduce una ciudad"
       @input="sugerirCiudades"
       @keypress="funcionEnter"
+      class="input-ciudad"
     />
     <ul id="sugerencias"></ul>
 
-    <button @click="obtenerClima">Buscar</button>
-    <button @click="limpiarBusqueda">Limpiar</button>
+    <div class="button">
+      <button @click="obtenerClima">Buscar</button>
+      <button @click="limpiarBusqueda">Limpiar</button>
+    </div>
 
     <div id="resultado"></div>
 
@@ -29,6 +32,26 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  margin: 0 auto;
+}
+.input-ciudad {
+  margin-bottom: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.button{
+  display: flex;
+  gap: 1rem;
+  cursor: pointer;
+}
+</style>
 
 <script>
 import {

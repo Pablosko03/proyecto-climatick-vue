@@ -7,7 +7,13 @@
         </div>
     </section>
 </template>
-
+<style scoped>
+.dias{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 2rem !important;
+}
+</style>
 <script setup>
 import { ref, watch } from 'vue'
 
