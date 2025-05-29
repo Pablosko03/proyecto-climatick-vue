@@ -46,7 +46,7 @@ import { setDoc, doc } from "firebase/firestore";
 </script>
 
 <template>
-    <div>
+    <div class="register">
         <h1>Registrarse</h1>
         <input v-model="name" type="text" placeholder="Nombre completo">
         <input v-model="email" type="email">
@@ -54,3 +54,23 @@ import { setDoc, doc } from "firebase/firestore";
         <button @click="register">Registrarse</button>
     </div>
 </template>
+
+<style scoped>
+.register{
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+.register input {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+</style>

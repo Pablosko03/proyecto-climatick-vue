@@ -38,7 +38,7 @@ import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
 </script>
 
 <template>
-    <div>
+    <div class="login">
         <h1>Iniciar Sesion</h1>
         <input v-model="email" type="email">
         <input v-model="password" type="password">
@@ -46,3 +46,24 @@ import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
         <p>{{ message }}</p> 
     </div>
 </template>
+
+<style scoped>
+.login {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+.login input {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+</style>
