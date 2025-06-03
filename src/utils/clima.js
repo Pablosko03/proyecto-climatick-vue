@@ -112,6 +112,7 @@ export async function obtenerPronostico(ciudad) {
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
 
         const boton = document.createElement("button");
+        boton.classList.add("dia-btn");
         boton.innerHTML = `
             <img src="${iconUrl}" alt="${descripcion}" />
             <div>${new Date(fecha).toLocaleDateString("es-ES", {

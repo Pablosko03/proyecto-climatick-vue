@@ -20,23 +20,29 @@
     </div>
     <ul class="options" id="sugerencias"></ul>
 
-    <div id="resultado"></div>
+    
 
     <div class="clima-hoy">
-      <div id="iconoClima"></div>
-      <div id="tempActual">🌡 --°C</div>
-      <div id="humedadActual">💧 --%</div>
-    </div>
+      <div class="cabecera">
+        <div id="resultado"></div>
+        <div class="icono-humedad">
+          <div id="iconoClima"></div>
+          <div id="humedadActual">💧 --%</div>
+        </div>
+      </div>
+      <div class="contenido">
+          <div id="tempActual">🌡 --°C</div>
+      </div>
+</div>
 
     <div class="proximos-dias">
-      <h3>Próximos días</h3>
     <div class="dias"></div>
-
+      
     </div>
   </div>
 </template>
 
-<style scoped>
+<style >
 .title{
   text-align: center;
   margin-bottom: 20px;
@@ -44,13 +50,13 @@
 .home {
   display: flex;
   flex-direction: column;
-  width: 600px;
-  margin: 0 auto;
+  
 }
 .search-container {
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 1rem;
 }
 .input-wrapper {
@@ -72,7 +78,57 @@
   list-style: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
+  text-align: center;
+}
+.clima-hoy{
+  background-color: rgb(53, 104, 97);
+  max-width: 600px;
+  height: auto;
+  margin-bottom: 40px;
+  border: 2px solid black;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cabecera{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.icono-humedad {
+  position: absolute;
+  right:0;
+}
+.contenido {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
+#iconoClima img{
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+}
+#resultado{
+  font-size: 1.5rem;
+  text-align: center;
+  flex: 1;
+}
+#tempActual{
+  font-size: 180%;
+  font-weight: bold;
+  height: 50px;
+  background-color: rgb(101, 164, 219);
+  margin-top: 150px;
+}
+#humedadActual{
+  border: 2px solid black;
+  border-radius: 7px;
+  font-size: 20px;
+  width: 120%;
+  height: 40px;
 }
 </style>
 
