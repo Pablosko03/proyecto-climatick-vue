@@ -20,29 +20,27 @@
     </div>
     <ul class="options" id="sugerencias"></ul>
 
-    
-
-    <div class="clima-hoy">
-      <div class="cabecera">
+    <div class="weather-section">
+      <div class="weather-today">
         <div id="resultado"></div>
-        <div class="icono-humedad">
+        <div class="icon-center">
           <div id="iconoClima"></div>
+        </div>
+        <div class="bottom-data">
+          <div id="tempActual">🌡 --°C</div>
           <div id="humedadActual">💧 --%</div>
         </div>
       </div>
-      <div class="contenido">
-          <div id="tempActual">🌡 --°C</div>
+      <div class="proximos-dias">
+        <div class="dias"></div>
       </div>
-</div>
-
-    <div class="proximos-dias">
-    <div class="dias"></div>
-      
     </div>
+    
   </div>
 </template>
 
 <style >
+
 .title{
   text-align: center;
   margin-bottom: 20px;
@@ -50,7 +48,8 @@
 .home {
   display: flex;
   flex-direction: column;
-  
+  height: 900px;
+  justify-content: space-between;
 }
 .search-container {
   display: flex;
@@ -80,56 +79,61 @@
   margin-bottom: 30px;
   text-align: center;
 }
-.clima-hoy{
-  background-color: rgb(53, 104, 97);
-  max-width: 600px;
-  height: auto;
+.weather-section{
+  width: 650px;
+}
+.proximos-dias{
+  margin-left: 20%;
+}
+.weather-today{
+  width: 650px;
+  height: 360px;
   margin-bottom: 40px;
   border: 2px solid black;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-.cabecera{
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.icono-humedad {
-  position: absolute;
-  right:0;
-}
-.contenido {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-#iconoClima img{
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
+  align-items: center;
+  justify-content: space-between;
 }
 #resultado{
   font-size: 1.5rem;
   text-align: center;
-  flex: 1;
-}
-#tempActual{
-  font-size: 180%;
   font-weight: bold;
-  height: 50px;
+}
+.icon-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#iconoClima img{
+  width: 260px;
+  height: 260px;
+  object-fit: contain;
+}
+.bottom-data {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;
+}
+#tempActual {
+  font-size: 1.8rem;
+  font-weight: bold;
   background-color: rgb(101, 164, 219);
-  margin-top: 150px;
+  padding: 8px 16px;
+  border-radius: 10px;
 }
-#humedadActual{
-  border: 2px solid black;
-  border-radius: 7px;
-  font-size: 20px;
-  width: 120%;
-  height: 40px;
+
+#humedadActual {
+  font-size: 1.8rem;
+  font-weight: bold;
+  background-color: rgb(101, 164, 219);
+  padding: 8px 16px;
+  border-radius: 10px;
 }
+
 </style>
 
 <script>

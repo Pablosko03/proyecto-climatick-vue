@@ -4,8 +4,6 @@
         <div class="dias">
             <button v-for="(dia, i) in dias" :key="i" v-html="dia"></button>
         </div>
-        
-        
     </section>
 </template>
 <style >
@@ -16,29 +14,30 @@
     gap: 9px;
 }
 .dias button {
-    width: 40%;
+    width: 70%;
     border-radius: 50px;
-    height: 80px;
+    height: 50px;
     font-size: 40px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
 }
 .dias button img {
     width: 90px;
     height: 90px;
     flex-shrink: 0;
 }
-@media (max-width: 800px) {
+@media (max-width:900px) {
     .dias button {
-    font-size: 16px;
-    padding: 8px 12px;
-    gap: 10px;
+        font-size: 30px;
+        padding: 8px 12px;
+        gap: 10px;
+        width: 40%;
 }
 
     .dias button img {
-    width: 40px;
-    height: 40px;
+        width: 40px;
+        height: 40px;
 }
 }
 </style>
