@@ -42,11 +42,12 @@ import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
     <div class="login">
         <h1>Bienvenido!</h1>
         <p class="slogan"><span>Climatik</span> el clima a un <span>click</span></p>
-        <input v-model="email" type="email">
-        <input v-model="password" type="password">
+        <input v-model="email" type="email" placeholder="Email">
+        <input v-model="password" type="password" placeholder="Contraseña">
         <button class="button" @click="login">Entrar</button>
         <p>{{ message }}</p> 
-        <p class="member"><span>¿No eres miembro?</span> Regístrate ahora</p>
+        <p class="member"><span>¿No eres miembro?</span> <RouterLink to="/register">
+            Regístrate</RouterLink> </p>
     </div>
 <div class="img-container">
     <div class="img-login">

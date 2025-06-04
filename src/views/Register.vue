@@ -51,8 +51,8 @@ import { setDoc, doc } from "firebase/firestore";
         <h1>Hazte miembro!</h1>
         <p class="slogan"><span>Climatik</span> el clima a un <span>click</span></p>
         <input v-model="name" type="text" placeholder="Nombre completo">
-        <input v-model="email" type="email">
-        <input v-model="password" type="password">
+        <input v-model="email" type="email" placeholder="Email">
+        <input v-model="password" type="password" placeholder="Contraseña">
         <button class="button" @click="register">Registrarse</button>
     </div>
 
