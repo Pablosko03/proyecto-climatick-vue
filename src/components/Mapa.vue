@@ -3,7 +3,7 @@
         <h3>Ubicación</h3>
         <div class="contenedor-mapa">
             <!-- Inserta aquí el iframe o imagen SVG -->
-            <img src="/public/img/MAPA_ESPAÑA.svg" alt="Icono SVG" />
+            <img src="../../public/img/MAPA_ESPANA.svg" alt="Icono SVG" />
         </div>
     </div>
 </template>

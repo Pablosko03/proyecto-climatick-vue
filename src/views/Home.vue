@@ -4,53 +4,59 @@
     <h2 class="title">Consulta el clima</h2>
     <div class="search-container">
       <div class="input-wrapper">
-        <input
-          type="text"
-          id="ciudad"
-          placeholder="Introduce una ciudad"
-          v-model="ciudad"
-          @input="sugerirCiudades"
-          @keypress="funcionEnter"
-        />
-        <div  @click="limpiarBusquedaInput">
+        <input type="text" id="ciudad" placeholder="Introduce una ciudad" v-model="ciudad" @input="sugerirCiudades"
+          @keypress="funcionEnter" />
+        <div @click="limpiarBusquedaInput">
           <span v-if="ciudad" class="clear-icon">X</span>
         </div>
       </div>
-      <button @click="obtenerClima">Buscar</button>  
+      <button @click="obtenerClima">Buscar</button>
     </div>
     <ul class="options" id="sugerencias"></ul>
 
-    <div class="weather-section">
-      <div class="weather-today">
-        <div id="resultado"></div>
-        <div class="icon-center">
-          <div id="iconoClima"></div>
+    <div class="boxflex">
+      <div class="weather-section">
+        <div class="weather-today">
+          <div id="resultado"></div>
+          <div class="icon-center">
+            <div id="iconoClima"></div>
+          </div>
+          <div class="bottom-data">
+            <div id="tempActual">🌡 --°C</div>
+            <div id="humedadActual">💧 --%</div>
+          </div>
         </div>
-        <div class="bottom-data">
-          <div id="tempActual">🌡 --°C</div>
-          <div id="humedadActual">💧 --%</div>
+        <div class="proximos-dias">
+          <div class="dias"></div>
         </div>
       </div>
-      <div class="proximos-dias">
-        <div class="dias"></div>
+
+      <div>
+        <Mapa />
       </div>
     </div>
-    
+
   </div>
 </template>
 
-<style >
+<style>
+.boxflex {
+  display: flex;
+  justify-content: space-between;
+}
 
-.title{
+.title {
   text-align: center;
   margin-bottom: 20px;
 }
+
 .home {
   display: flex;
   flex-direction: column;
   height: 900px;
   justify-content: space-between;
 }
+
 .search-container {
   display: flex;
   align-items: center;
@@ -58,12 +64,14 @@
   margin: 0 auto;
   margin-bottom: 1rem;
 }
+
 .input-wrapper {
   position: relative;
   align-items: center;
   display: flex;
   flex: 1;
 }
+
 .clear-icon {
   position: absolute;
   right: 0.5rem;
@@ -72,20 +80,24 @@
   color: black;
   cursor: pointer;
 }
-.options{
+
+.options {
   cursor: pointer;
   list-style: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
   text-align: center;
 }
-.weather-section{
+
+.weather-section {
   width: 650px;
 }
-.proximos-dias{
+
+.proximos-dias {
   margin-left: 20%;
 }
-.weather-today{
+
+.weather-today {
   width: 650px;
   height: 360px;
   margin-bottom: 40px;
@@ -97,27 +109,32 @@
   align-items: center;
   justify-content: space-between;
 }
-#resultado{
+
+#resultado {
   font-size: 1.5rem;
   text-align: center;
   font-weight: bold;
 }
-.icon-center{
+
+.icon-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-#iconoClima img{
+
+#iconoClima img {
   width: 260px;
   height: 260px;
   object-fit: contain;
 }
+
 .bottom-data {
   display: flex;
   justify-content: center;
   gap: 40px;
   align-items: center;
 }
+
 #tempActual {
   font-size: 1.8rem;
   font-weight: bold;
@@ -133,7 +150,6 @@
   padding: 8px 16px;
   border-radius: 10px;
 }
-
 </style>
 
 <script>
@@ -144,8 +160,9 @@ import {
   funcionEnter,
 } from "../utils/clima.js";
 import { onAuthStateChanged } from "firebase/auth";
-import {auth} from '@/firebase/config'
+import { auth } from '@/firebase/config'
 import LogIn from "./LogIn.vue";
+import Mapa from "@/components/Mapa.vue";
 
 export default {
   data() {
@@ -153,47 +170,51 @@ export default {
       ciudad: ''
     };
   },
+  components: {
+    LogIn,
+    Mapa
+  },
   methods: {
-      sugerirCiudades,
-      obtenerClima,
-      limpiarBusquedaInput(){
-        this.ciudad = '';
-        limpiarBusqueda();
-      },
-      funcionEnter,
-    
-      login() {
-        localStorage.setItem('isLoggedIn', 'true');
-        updateUI();
-      },
-
-      logout() {
-        localStorage.removeItem('isLoggedIn');
-        updateUI();
-      },
-
-      updateUI() {
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-        document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
-        document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
-        document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
-        window.onload = updateUI;
-      },
-
+    sugerirCiudades,
+    obtenerClima,
+    limpiarBusquedaInput() {
+      this.ciudad = '';
+      limpiarBusqueda();
     },
-    
+    funcionEnter,
 
-    mounted() {
-            onAuthStateChanged(auth,(user) =>{
-                if(user){
-                    const uid = user.uid
-                    this.message = 'Usuario logueado ' + user.email
-                }else{
-                    this.message = 'No hay usuario logueado'
-                }
-        })
-    }
+    login() {
+      localStorage.setItem('isLoggedIn', 'true');
+      updateUI();
+    },
+
+    logout() {
+      localStorage.removeItem('isLoggedIn');
+      updateUI();
+    },
+
+    updateUI() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+      document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
+      document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
+      document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
+      window.onload = updateUI;
+    },
+
+  },
+
+
+  mounted() {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid
+        this.message = 'Usuario logueado ' + user.email
+      } else {
+        this.message = 'No hay usuario logueado'
+      }
+    })
+  }
 };
 
 </script>
