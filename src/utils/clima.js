@@ -9,27 +9,30 @@ export async function sugerirCiudades() {
     }
 
     const apiKey = "b221ee79be96d11caa33bea05c8901f2";
-    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${ciudad}&limit=5&appid=${apiKey}`;
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${ciudad},ES&limit=10&appid=${apiKey}`;
 
     try {
         const respuesta = await fetch(url);
         const datos = await respuesta.json();
         console.log(datos);
-
+        
         if (datos.length > 0) {
             sugerenciasLista.style.display = "block";
         }
 
+        sugerenciasLista.innerHTML = "";
+
         datos.forEach((lugar) => {
-            if (lugar.country === "ES") {
+            //if (lugar.country === "ES") {
                 const item = document.createElement("li");
                 item.textContent = `${lugar.name}, ${lugar.country}`;
-                item.onclick = () => {
+                item.addEventListener('click', () => {
                     seleccionarCiudad(lugar.name);
                     obtenerClima();
-                };
+                });
                 sugerenciasLista.appendChild(item);
-            }
+                console.log(lugar); // Agrega esta línea para verificar la informaci
+            // }
         });
     } catch (error) {
         console.error("Error al obtener sugerencias:", error);
