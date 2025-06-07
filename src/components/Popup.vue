@@ -9,7 +9,16 @@ export default {
     methods: {
         closePopup() {
             this.$emit('close');
-        }
+            this.updateUI();
+        },
+
+        updateUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
+            document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
+            document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
+            window.onload = updateUI;
+        },
     }
 }
 </script>

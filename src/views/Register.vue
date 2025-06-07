@@ -1,6 +1,6 @@
 <script>
 import { auth, db } from '@/firebase/config'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
     export default {
@@ -32,15 +32,35 @@ import { setDoc, doc } from "firebase/firestore";
                             console.error("Error adding document: ", error);
                         });
                     console.log("he pasado el setDoc");
-
-                    this.$router.push('/');
                 })
                 .catch((error) => {
                     const errorCode = error.code
                     const errorMessage = error.message
                     this.message = errorMessage
                 })
-            }
+            },
+            
+            updateUI() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+                document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
+                document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
+                document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
+                window.onload = updateUI;
+            },
+        },
+        mounted() {
+            onAuthStateChanged(auth,(user) =>{
+                if(user){
+                    const uid = user.uid
+                    this.message = 'Usuario logueado ' + user.email
+                    localStorage.setItem('isLoggedIn', 'true');
+                    this.$router.push('/');
+                    this.updateUI();
+                }else{
+                    this.message = 'No hay usuario logueado'
+                }
+            })
         }
     }
 </script>

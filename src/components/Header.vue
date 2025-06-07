@@ -5,7 +5,7 @@
         <nav class="nav">
             <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
             <button id="Registro" @click="$router.push('/register')">Registrarse</button>
-            <button id="LogOut" @click="logout">Logout</button>
+            <button id="LogOut" @click="logout()">Logout</button>
         </nav>
     </header>
 </template>
@@ -41,6 +41,17 @@ export default {
             
         async logout() {
             await signOut(auth);
+            localStorage.setItem('isLoggedIn', 'false');
+            this.updateUI();
+        },
+
+        updateUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
+            document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
+            document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
+            window.onload = updateUI;
         },
     },
 

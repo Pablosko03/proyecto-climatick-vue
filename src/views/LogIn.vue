@@ -1,6 +1,6 @@
 <script>
-import {auth} from '@/firebase/config'
-import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '@/firebase/config'
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
     export default {
         data() {
             return {
@@ -20,7 +20,16 @@ import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
                 const errorMessage = error.message;
                 this.message = errorMessage
             });
-            }
+            },
+
+            updateUI() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+                document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
+                document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
+                document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
+                window.onload = updateUI;
+            },
         },
         mounted() {
             onAuthStateChanged(auth,(user) =>{
@@ -29,6 +38,7 @@ import { onAuthStateChanged,signInWithEmailAndPassword } from "firebase/auth";
                     this.message = 'Usuario logueado ' + user.email
                     localStorage.setItem('isLoggedIn', 'true');
                     this.$router.push('/');
+                    this.updateUI();
                 }else{
                     this.message = 'No hay usuario logueado'
                 }
