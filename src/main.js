@@ -7,7 +7,6 @@ import "./assets/css/reset.css";
 import "./assets/css/layout.css";
 import "./assets/css/components.css";
 import "./assets/css/weather.css";
-import "./assets/css/chat.css";
 
 createApp(App)
 

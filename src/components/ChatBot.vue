@@ -1,137 +1,141 @@
 <!-- components/ChatBot.vue -->
 <template>
-    <div class="chat-container">
-        <button class="chat-toggle" @click="visible = true">💬</button>
-
-        <div class="chat-box" v-show="visible">
-        <header class="chat-header">
-            <span>Asistente</span>
-            <button @click="visible = false">✖</button>
-        </header>
-
-        <div class="chat-messages" ref="scrollArea">
-            <div v-for="(msg, i) in mensajes" :key="i" :class="msg.rol">
-            <strong>{{ msg.rol === 'user' ? 'Tú' : 'Bot' }}:</strong> {{ msg.texto }}
-            </div>
+    <div class="chat-window">
+        <div class="chat-header">
+        <span>ClimaBot</span>
+        <button @click="$emit('close')">✖</button>
+        </div>
+        
+        <div class="chat-body">
+        
+        <div v-for="(msg, index) in messages" :key="index" :class="['message', msg.sender]">
+        <img
+            class="avatar"
+            :src="msg.sender === 'user' ? userAvatar : botAvatar"
+            :alt="msg.sender"
+        />
+        <p class="message-text">{{ msg.text }}</p>
+        </div>
         </div>
 
         <div class="chat-input">
-            <input
-            v-model="entrada"
-            @keypress.enter="enviarMensaje"
-            type="text"
-            placeholder="Escribe algo..."
-            />
-            <button @click="enviarMensaje">Enviar</button>
-        </div>
+        <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Escribe tu mensaje..." />
+        <button @click="sendMessage">Enviar</button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, nextTick } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const API_URL = 'https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132'
+const userInput = ref('')
+const messages = ref([])
 
-const entrada = ref('')
-const mensajes = ref([])
-const visible = ref(false)
-const scrollArea = ref(null)
+const botAvatar = 'https://img.freepik.com/vector-gratis/chatbot-mensaje-chat-vectorart_78370-4104.jpg?semt=ais_hybrid&w=740'
+const userAvatar = 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
 
-const enviarMensaje = async () => {
-    const texto = entrada.value.trim()
-    if (!texto) return
+onMounted(() => {
+    messages.value.push({
+        sender : 'bot',
+        text : '¡Hola! Soy ClimaBot. Dime el nombre de una ciudad o pueblo y te diré cómo está el clima.'
+    })
+})
 
-    mensajes.value.push({ rol: 'user', texto })
-    entrada.value = ''
+const sendMessage = async () => {
+    const question = userInput.value.trim()
+    if (!question) return
 
-    try {
-        const res = await fetch(API_URL, {
+  // Añade el mensaje del usuario
+    messages.value.push({ sender: 'user', text: question })
+    userInput.value = ''
+
+try {
+    const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: texto }),
-        })
-        const data = await res.json()
-        const respuesta =
-        typeof data === 'string'
-            ? data
-            : data.answer || data.response || JSON.stringify(data)
+        headers: {
+        'Content-Type': 'application/json'
+    },
+        body: JSON.stringify({ question })
+    })
 
-        mensajes.value.push({ rol: 'bot', texto: respuesta })
-    } catch (error) {
-        console.error(error)
-        mensajes.value.push({ rol: 'bot', texto: 'Error al contactar con el bot.' })
-    }
-
-    await nextTick()
-    if (scrollArea.value) {
-        scrollArea.value.scrollTop = scrollArea.value.scrollHeight
-    }
+    const data = await response.json()
+    messages.value.push({ sender: 'ClimaBot', text: data.text || 'Sin respuesta.' })
+} catch (error) {
+    messages.value.push({ sender: 'ClimaBot', text: 'Error al conectar con el bot.' })
+    console.error(error)
+}  
 }
 </script>
 
 <style scoped>
-.chat-container {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    font-family: sans-serif;
-}
-.chat-toggle {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: 9999px;
-    cursor: pointer;
-}
-.chat-box {
+.chat-window {
     width: 300px;
     height: 400px;
     background: white;
+    border-radius: 12px;
     border: 1px solid #ccc;
-    border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    color: black;
 }
+
 .chat-header {
-    background: #1e40af;
+    background: #4a90e2;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
 }
-.chat-messages {
+
+.chat-body {
     flex: 1;
-    padding: 0.5rem;
+    padding: 10px;
     overflow-y: auto;
 }
-.chat-messages .user {
+
+.user {
     text-align: right;
-    margin: 0.5rem 0;
+    margin-bottom: 5px;
 }
-.chat-messages .bot {
+
+.bot {
     text-align: left;
-    margin: 0.5rem 0;
+    margin-bottom: 5px;
 }
+
 .chat-input {
     display: flex;
     border-top: 1px solid #ccc;
 }
+
 .chat-input input {
     flex: 1;
+    padding: 10px;
     border: none;
-    padding: 0.5rem;
+    outline: none;
 }
+
 .chat-input button {
-    background: #2563eb;
+    padding: 10px;
+    background: #4a90e2;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
     cursor: pointer;
+}
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 8px;
+}
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    
 }
 </style>

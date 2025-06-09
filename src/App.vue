@@ -3,13 +3,13 @@
     <Buscador @ciudadSeleccionada="ciudad = $event" />
     <ClimaHoy :ciudad="ciudad" />
     <Pronostico :ciudad="ciudad" />
-    <ChatBot />
+    
   </main>
   <div id="app">
     <Header></Header>
     <Sidebar></Sidebar>
     <router-view />
-
+    <ChatButton />
     <Popup :show="showPopup" @close="showPopup = false" />
   </div>
 </template>
@@ -23,7 +23,7 @@ import ChatBot from './components/ChatBot.vue'
 import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
 import Popup from './components/Popup.vue'
-
+import ChatButton from './components/ChatButton.vue'
 export default {
   components: {
     Header,

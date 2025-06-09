@@ -31,15 +31,24 @@
         </div>
       </div>
 
-      <div>
+      <div class="map">
         <Mapa />
       </div>
     </div>
-
+    <div class="chatbot">
+      <ChatButton v-if="isLoggedIn" />
+    </div>
   </div>
 </template>
 
 <style>
+
+.map{
+  width: 800px;
+}
+.map h3{
+  text-align: center;
+}
 .boxflex {
   display: flex;
   justify-content: space-between;
@@ -150,6 +159,7 @@
   padding: 8px 16px;
   border-radius: 10px;
 }
+
 </style>
 
 <script>
@@ -163,16 +173,21 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/firebase/config'
 import LogIn from "./LogIn.vue";
 import Mapa from "@/components/Mapa.vue";
+import { ref } from 'vue'
+import ChatButton from '@/components/ChatButton.vue'
+
 
 export default {
   data() {
     return {
-      ciudad: ''
+      ciudad: '',
+      isLoggedIn : false
     };
   },
   components: {
     LogIn,
-    Mapa
+    Mapa,
+    ChatButton
   },
   methods: {
     sugerirCiudades,
@@ -208,9 +223,11 @@ export default {
   mounted() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid
+        const uid = user.uid;
+        this.isLoggedIn = true
         this.message = 'Usuario logueado ' + user.email
       } else {
+        this.isLoggedIn = false
         this.message = 'No hay usuario logueado'
       }
     })
