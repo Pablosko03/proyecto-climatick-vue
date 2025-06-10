@@ -46,7 +46,7 @@ import { setDoc, doc } from "firebase/firestore";
                 document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
                 document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
                 document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
-                window.onload = updateUI;
+                window.onload = this.updateUI;
             },
         },
         mounted() {

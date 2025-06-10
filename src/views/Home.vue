@@ -200,12 +200,12 @@ export default {
 
     login() {
       localStorage.setItem('isLoggedIn', 'true');
-      updateUI();
+      this.updateUI();
     },
 
     logout() {
       localStorage.removeItem('isLoggedIn');
-      updateUI();
+      this.updateUI();
     },
 
     updateUI() {
@@ -214,7 +214,7 @@ export default {
       document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
       document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
       document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
-      window.onload = updateUI;
+      window.onload = this.updateUI;
     },
 
   },

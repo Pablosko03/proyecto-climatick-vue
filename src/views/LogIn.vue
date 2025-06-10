@@ -28,7 +28,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
                 document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
                 document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
                 document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
-                window.onload = updateUI;
+                window.onload = this.updateUI;
             },
         },
         mounted() {
@@ -37,8 +37,8 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
                     const uid = user.uid
                     this.message = 'Usuario logueado ' + user.email
                     localStorage.setItem('isLoggedIn', 'true');
-                    this.$router.push('/');
                     this.updateUI();
+                    this.$router.push('/');
                 }else{
                     this.message = 'No hay usuario logueado'
                 }
