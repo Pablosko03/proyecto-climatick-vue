@@ -25,45 +25,48 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue'
-
-const userInput = ref('')
-const messages = ref([])
-
-const botAvatar = 'https://img.freepik.com/vector-gratis/chatbot-mensaje-chat-vectorart_78370-4104.jpg?semt=ais_hybrid&w=740'
-const userAvatar = 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
-
-onMounted(() => {
-    messages.value.push({
-        sender : 'bot',
-        text : '¡Hola! Soy ClimaBot. Dime el nombre de una ciudad o pueblo y te diré cómo está el clima.'
-    })
-})
-
-const sendMessage = async () => {
-    const question = userInput.value.trim()
-    if (!question) return
-
-  // Añade el mensaje del usuario
-    messages.value.push({ sender: 'user', text: question })
-    userInput.value = ''
-
-try {
-    const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
+<script>
+export default {
+    data() {
+        return {
+            userInput: '',
+            messages: [],
+            botAvatar: 'https://img.freepik.com/vector-gratis/chatbot-mensaje-chat-vectorart_78370-4104.jpg?semt=ais_hybrid&w=740',
+            userAvatar: 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
+        }
     },
-        body: JSON.stringify({ question })
-    })
+    mounted() {
+        this.messages.push({
+            sender: 'bot',
+            text: '¡Hola! Soy ClimaBot. Dime el nombre de una ciudad o pueblo y te diré cómo está el clima.'
+        })
+    },
+    methods: {
+        async sendMessage() {
+            const question = this.userInput.trim()
+            if (!question) return
 
-    const data = await response.json()
-    messages.value.push({ sender: 'ClimaBot', text: data.text || 'Sin respuesta.' })
-} catch (error) {
-    messages.value.push({ sender: 'ClimaBot', text: 'Error al conectar con el bot.' })
-    console.error(error)
-}  
+            // Añade el mensaje del usuario
+            this.messages.push({ sender: 'user', text: question })
+            this.userInput = ''
+
+            try {
+                const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question })
+                })
+
+                const data = await response.json()
+                this.messages.push({ sender: 'ClimaBot', text: data.text || 'Sin respuesta.' })
+            } catch (error) {
+                this.messages.push({ sender: 'ClimaBot', text: 'Error al conectar con el bot.' })
+                console.error(error)
+            }
+        }
+    }
 }
 </script>
 
@@ -76,9 +79,6 @@ try {
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    bottom: 80px;
-    right: 0;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     color: black;
 }

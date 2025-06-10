@@ -22,7 +22,8 @@
     gap: 1rem;
 }
 .title{
-    font-family: "Nothing You Could Do";
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
     font-weight: 400;
     font-style: normal;
 }

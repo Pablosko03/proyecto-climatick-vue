@@ -1,20 +1,41 @@
 <template>
+
 <div class="chat-container">
-    <button @click="toggleChat" class="chat-toggle-btn">
+    <button @click="toggle" class="chat-toggle-btn">
     💬
     </button>
-    <ChatBot v-if="showChat" @close="showChat = false" />
+    
 </div>
+
+<Popover ref="op">
+    <ChatBot @close="showChat = false" />
+</Popover>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script>
 import ChatBot from './ChatBot.vue'
+import Popover from 'primevue/popover';
 
-const showChat = ref(false)
 
-function toggleChat() {
-    showChat.value = !showChat.value
+export default {
+    components: {
+        ChatBot,
+        Popover
+    },
+    data() {
+        return {
+            showChat: false
+        }
+    },
+    methods: {
+        toggleChat() {
+            this.showChat = !this.showChat
+        },
+        toggle(event) {
+            this.$refs.op.toggle(event);
+        }
+    }
+    
 }
 </script>
 

@@ -10,7 +10,8 @@
           <span v-if="ciudad" class="clear-icon">X</span>
         </div>
       </div>
-      <Button @click="searchButton()" label="Buscar" severity="contrast"/>
+      <Button class="buttonvue" @click="searchButton()"  icon="pi pi-search" severity="primary" rounded aria-label="Search" />
+
     </div>
     <ul class="options" id="sugerencias"></ul>
 
@@ -177,6 +178,7 @@ import { ref } from 'vue'
 import ChatButton from '@/components/ChatButton.vue'
 import { Toast } from "primevue";
 import Button from 'primevue/button';
+import 'primeicons/primeicons.css'
 
 
 

@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import "./assets/main.css";
 import "./assets/css/reset.css";
 import "./assets/css/layout.css";
 import "./assets/css/components.css";
@@ -27,6 +28,10 @@ const customPrimePreset = definePreset(Aura, {
       800: '{blue.800}',
       900: '{blue.900}',
       950: '{blue.950}'
+    },
+    cssLayer: {
+      name: 'primevue',
+      order: 'app-styles, primevue'
     }
   }
 })

@@ -117,8 +117,9 @@ export async function obtenerPronostico(ciudad) {
         const icon = item.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
 
-        const boton = document.createElement("button");
+        const boton = document.createElement("div");
         boton.classList.add("dia-btn");
+        boton.classList.add ("bg-sky-950", "text-red-50");
         boton.innerHTML = `
             <img src="${iconUrl}" alt="${descripcion}" />
             <div>${new Date(fecha).toLocaleDateString("es-ES", {

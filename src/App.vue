@@ -35,6 +35,7 @@ export default {
     Sidebar,
     Popup,
     Toast,
+    ChatButton,
   },
   data() {
     return {
