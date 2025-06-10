@@ -75,9 +75,12 @@ export async function obtenerClima() {
             resultado.innerHTML = `<strong>${datos.name}</strong><br>`;
 
             obtenerPronostico(ciudad);
+            return datos;
+
         } else {
             resultado.innerHTML = `Ciudad no encontrada.`;
         }
+        return null;
     } catch (error) {
             resultado.innerHTML = "Error al obtener los datos. Verifica tu conexión.";
     }

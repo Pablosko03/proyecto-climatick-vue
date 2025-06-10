@@ -10,7 +10,7 @@
           <span v-if="ciudad" class="clear-icon">X</span>
         </div>
       </div>
-      <button @click="obtenerClima">Buscar</button>
+      <Button @click="searchButton()" label="Buscar" severity="contrast"/>
     </div>
     <ul class="options" id="sugerencias"></ul>
 
@@ -175,6 +175,9 @@ import LogIn from "./LogIn.vue";
 import Mapa from "@/components/Mapa.vue";
 import { ref } from 'vue'
 import ChatButton from '@/components/ChatButton.vue'
+import { Toast } from "primevue";
+import Button from 'primevue/button';
+
 
 
 export default {
@@ -187,7 +190,9 @@ export default {
   components: {
     LogIn,
     Mapa,
-    ChatButton
+    ChatButton,
+    Toast,
+    Button
   },
   methods: {
     sugerirCiudades,
@@ -196,6 +201,25 @@ export default {
       this.ciudad = '';
       limpiarBusqueda();
     },
+    async searchButton(){
+      const data = await obtenerClima();
+      console.log(data);
+
+      const temperatura = data.main.temp;
+      const viento = data.wind.speed;
+
+      if (temperatura > 33){
+        this.$toast.add({ severity: 'info', summary: 'Warning', detail: 'Temperatura muy alta', life: 3000 });
+      } else if (temperatura < 0) {
+        this.$toast.add({ severity: 'info', summary: 'Error', detail: 'Temperatura muy baja', life: 3000 });
+      } else if (viento > 20) {
+        this.$toast.add({ severity: 'info', summary: 'Info', detail: 'Viento fuerte', life: 3000 });
+      } else {
+        this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Clima obtenido correctamente', life: 3000 });
+      }
+      
+    },
+
     funcionEnter,
 
     login() {

@@ -12,6 +12,9 @@
     <ChatButton />
     <Popup :show="showPopup" @close="showPopup = false" />
   </div>
+
+  <Toast />
+
 </template>
 
 <script>
@@ -24,11 +27,14 @@ import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
 import Popup from './components/Popup.vue'
 import ChatButton from './components/ChatButton.vue'
+import Toast from 'primevue/toast';
+
 export default {
   components: {
     Header,
     Sidebar,
-    Popup
+    Popup,
+    Toast,
   },
   data() {
     return {
@@ -51,6 +57,7 @@ export default {
     this.checkIfUserHasSeenPopup()
   }
 }
+
 
 </script>
 
