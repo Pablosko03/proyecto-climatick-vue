@@ -1,10 +1,5 @@
 <template>
-  <main>
-    <Buscador @ciudadSeleccionada="ciudad = $event" />
-    <ClimaHoy :ciudad="ciudad" />
-    <Pronostico :ciudad="ciudad" />
-    
-  </main>
+
   <div id="app">
     <Header></Header>
     <Sidebar></Sidebar>
@@ -36,6 +31,9 @@ export default {
     Popup,
     Toast,
     ChatButton,
+    Buscador,
+    ClimaHoy,
+    Pronostico,
   },
   data() {
     return {

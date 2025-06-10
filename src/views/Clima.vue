@@ -2,7 +2,7 @@
 <template>
     <div class="clima">
         <input
-            id="ciudad"
+            id="ciudad" class="bg-gray-100 border border-gray-300 rounded-lg p-2 mb-4"
             type="text"
             placeholder="Ingresa una ciudad"
             @input="sugerirCiudades"
@@ -37,5 +37,5 @@ import {
 </script>
 
 <style scoped>
-/* Puedes mover tu CSS aquí */
+/* Puedes mover tu CSS aquí */ 
 </style>

@@ -3,8 +3,8 @@
     <div class="chat-window">
         <div class="chat-header">
         <span>ClimaBot</span>
-        <button @click="$emit('close')">✖</button>
-        </div>
+        <Button class="close-button" @click="$emit('close')"  icon="pi pi-times" severity="primary" rounded />
+    </div>
         
         <div class="chat-body">
         
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { Button } from 'primevue'
+
 export default {
     data() {
         return {
@@ -35,6 +37,11 @@ export default {
             userAvatar: 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
         }
     },
+
+    components:{
+        Button
+    },
+
     mounted() {
         this.messages.push({
             sender: 'bot',
@@ -68,27 +75,27 @@ export default {
         }
     }
 }
+
+
 </script>
 
 <style scoped>
 .chat-window {
     width: 300px;
     height: 400px;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    color: black;
 }
 
 .chat-header {
-    background: #4a90e2;
-    color: white;
+    border-bottom: solid 2px #2128bd;
+    color: #2b2b2b;
+    border-radius: 12px 12px 0 0;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    font-family:Roboto, sans-serif;
+    font-size: 18px;
 }
 
 .chat-body {
@@ -105,6 +112,10 @@ export default {
 .bot {
     text-align: left;
     margin-bottom: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    
 }
 
 .chat-input {
@@ -114,17 +125,26 @@ export default {
 
 .chat-input input {
     flex: 1;
-    padding: 10px;
+    padding: 9px;
+    padding-left: 1rem;
     border: none;
     outline: none;
+    font-family: Roboto, sans-serif;
 }
 
 .chat-input button {
     padding: 10px;
-    background: #4a90e2;
+    background: #2128bd;
     color: white;
     border: none;
     cursor: pointer;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+
+    &:hover {
+        background: #868cf9;
+    }
 }
 .avatar {
     width: 32px;
@@ -137,5 +157,16 @@ export default {
     align-items: flex-start;
     margin-bottom: 10px;
     
+}
+
+.close-button{
+    background: #2128bd;
+    color: white;
+    cursor: pointer;
+    border: none !important;
+}
+
+.close-button:hover {
+    background: #868cf9 !important;
 }
 </style>

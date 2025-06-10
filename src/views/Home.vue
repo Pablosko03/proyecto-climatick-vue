@@ -7,7 +7,7 @@
         <input type="text" id="ciudad" placeholder="Introduce una ciudad" v-model="ciudad" @input="sugerirCiudades"
           @keypress="funcionEnter" />
         <div @click="limpiarBusquedaInput">
-          <span v-if="ciudad" class="clear-icon">X</span>
+          <span v-if="ciudad" class="clear-icon"> <i class="pi pi-times"></i></span>
         </div>
       </div>
       <Button class="buttonvue" @click="searchButton()"  icon="pi pi-search" severity="primary" rounded aria-label="Search" />
@@ -73,6 +73,12 @@
   justify-content: center;
   margin: 0 auto;
   margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+input {
+  background: #ffffff;
+  color: #2b2b2b;
 }
 
 .input-wrapper {
@@ -83,12 +89,12 @@
 }
 
 .clear-icon {
-  position: absolute;
-  right: 0.5rem;
-  transform: translateY(-50%);
+  position: relative;
+  right: 1.7rem;
   font-size: 20px;
-  color: black;
+  color: #2b2b2b;
   cursor: pointer;
+  
 }
 
 .options {

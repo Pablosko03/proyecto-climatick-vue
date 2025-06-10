@@ -1,7 +1,7 @@
 <!-- src/components/Header.vue -->
 <template>
     <header class="header">
-        <h1 class="title">Climatik</h1>
+        <RouterLink to="/"><h1 class="title">Climatik</h1></RouterLink>
         <nav class="nav">
             <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
             <button id="Registro" @click="$router.push('/register')">Registrarse</button>
