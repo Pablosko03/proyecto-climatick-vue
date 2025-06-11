@@ -1,7 +1,9 @@
 <!-- src/views/Home.vue -->
 <template>
   <div class="home">
-    <h2 class="title">Consulta el clima</h2>
+    <div class="slogan 'Bricolage Grotesque', sans-serif">
+    <p><span>Climatik</span> el clima a un <span>click</span></p>
+  </div>
     <div class="search-container">
       <div class="input-wrapper">
         <input type="text" id="ciudad" placeholder="Introduce una ciudad" v-model="ciudad" @input="sugerirCiudades"
@@ -57,10 +59,28 @@
   justify-content: space-between;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
+.slogan{
+  padding: 30px 20px;
+  height: 50px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 500;
+  font-size: 25px; 
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+span{
+  color: #2128bd;
+  font-size: 30px;
+  font-weight: 800;
+
+  &:hover{
+    color:#868cf9;
+  }
+}
+
 
 .home {
   display: flex;

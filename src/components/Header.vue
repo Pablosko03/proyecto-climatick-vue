@@ -11,7 +11,7 @@
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Nothing+You+Could+Do&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 .header {
     display: flex;
     justify-content: space-between;
