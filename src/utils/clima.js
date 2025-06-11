@@ -119,7 +119,7 @@ export async function obtenerPronostico(ciudad) {
 
         const boton = document.createElement("div");
         boton.classList.add("dia-btn");
-        boton.classList.add ("bg-sky-950", "text-red-50");
+        boton.classList.add ("bg-blue-300", "text-gray-600", "text-3xl","font-(family-name:Roboto,sans-serif)","font-semibold","max-w-sm" ,"rounded-full", "flex", "flex-row","justify-center", "items-center", "gap-20", "hover:bg-[#2128bd]", "transition-colors", "duration-300",  "hover:text-white", "p-4", "m-2");
         boton.innerHTML = `
             <img src="${iconUrl}" alt="${descripcion}" />
             <div>${new Date(fecha).toLocaleDateString("es-ES", {

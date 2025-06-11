@@ -1,18 +1,20 @@
 /* Botones, inputs, etc */
 button {
-    background-color: #ffcc70;
-    color: #333;
+    color: #fff;
     border: none;
-    border-radius: 12px;
+    font-family: Roboto,sans-serif;
+    background-color: #2128bd;
+    border-radius: 25px;
     padding: 0.7rem 1.2rem;
-    font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 button:hover {
-    background-color: #f5b041;
+    background-color:  #868cf9;
+    border-radius: 25px;
+    transition: 0.3s ease;
 }
 
 input[type="text"] {
