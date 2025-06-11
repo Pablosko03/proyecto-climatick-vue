@@ -58,7 +58,7 @@ export default {
             this.userInput = ''
 
             try {
-                const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
+                const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/89571276-fb91-44e9-9488-f22b3beef8e2', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
