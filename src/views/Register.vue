@@ -134,7 +134,8 @@ import { setDoc, doc } from "firebase/firestore";
     background: #fff
 }
 .register input {
-   display: block;
+    color:#2c2c2c;
+    display: block;
     width: 100%;
     margin: 0.5rem 0;
     padding: 0.75rem;
@@ -191,4 +192,6 @@ import { setDoc, doc } from "firebase/firestore";
     cursor: pointer;
     font-size: 1rem;
 }
+
+
 </style>

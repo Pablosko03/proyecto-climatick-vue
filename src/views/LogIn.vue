@@ -129,6 +129,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
 }
 .login input {
+    color:#2c2c2c;
     display: block;
     width: 100%;
     margin: 0.5rem 0;

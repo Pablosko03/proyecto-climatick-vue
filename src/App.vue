@@ -1,10 +1,5 @@
 <template>
-  <main>
-    <Buscador @ciudadSeleccionada="ciudad = $event" />
-    <ClimaHoy :ciudad="ciudad" />
-    <Pronostico :ciudad="ciudad" />
-    
-  </main>
+
   <div id="app">
     <Header></Header>
     <Sidebar></Sidebar>
@@ -12,6 +7,9 @@
     <ChatButton />
     <Popup :show="showPopup" @close="showPopup = false" />
   </div>
+
+  <Toast />
+
 </template>
 
 <script>
@@ -24,11 +22,18 @@ import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue'
 import Popup from './components/Popup.vue'
 import ChatButton from './components/ChatButton.vue'
+import Toast from 'primevue/toast';
+
 export default {
   components: {
     Header,
     Sidebar,
-    Popup
+    Popup,
+    Toast,
+    ChatButton,
+    Buscador,
+    ClimaHoy,
+    Pronostico,
   },
   data() {
     return {
@@ -51,6 +56,7 @@ export default {
     this.checkIfUserHasSeenPopup()
   }
 }
+
 
 </script>
 

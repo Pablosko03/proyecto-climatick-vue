@@ -8,12 +8,21 @@ importers:
 
   .:
     dependencies:
+      '@primeuix/themes':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@tailwindcss/vite':
         specifier: ^4.1.8
         version: 4.1.8(vite@6.3.5(@types/node@22.15.22)(jiti@2.4.2)(lightningcss@1.30.1))
       firebase:
         specifier: ^11.8.1
         version: 11.8.1
+      primeicons:
+        specifier: ^7.0.0
+        version: 7.0.0
+      primevue:
+        specifier: ^4.3.5
+        version: 4.3.5(vue@3.5.14)
       tailwindcss:
         specifier: ^4.1.8
         version: 4.1.8
@@ -575,6 +584,30 @@ packages:
 
   '@polka/url@1.0.0-next.29':
     resolution: {integrity: sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==}
+
+  '@primeuix/styled@0.6.4':
+    resolution: {integrity: sha512-7ePLwqazLV0x269YlPMeE4wtQKT0NScY2/gEin0/96krTiGiElmlzKMMbH69bVApm/sfen5DZGuCEEwPiBJJ5g==}
+    engines: {node: '>=12.11.0'}
+
+  '@primeuix/styles@1.1.1':
+    resolution: {integrity: sha512-oguFY2Rs4ZqdcFqEKxBt2d8trTkAjJ5BGTaDV0zbwdqRCRcZp9+di3K3Wv57CW/+tFDA0z1Dg7Dpm7wmkOII9Q==}
+
+  '@primeuix/themes@1.1.1':
+    resolution: {integrity: sha512-fcHPLfw73cOApPovtA+D9wf3N7FBruU/6oTRt+AcTK754mHhnTza9kC2jiFQfq5HnWF0u0J/5Pb943fNsnxVVA==}
+
+  '@primeuix/utils@0.5.4':
+    resolution: {integrity: sha512-8LggV3Jz59pymHQD10e/u63z/GemQ22RBeu2Gb1eJgBYVwn1iOb82LR+daeAc/LxrXCC5pHnftnCmnZO6vInLA==}
+    engines: {node: '>=12.11.0'}
+
+  '@primevue/core@4.3.5':
+    resolution: {integrity: sha512-YBlSr/EbXsnsTOyfgqmbrJQ7AI5EThaeGZvfDFjPIIEpokEK+Q32++9xPn3MH8rcM8zPsfMeBOWi4/OJkOqG4w==}
+    engines: {node: '>=12.11.0'}
+    peerDependencies:
+      vue: ^3.5.0
+
+  '@primevue/icons@4.3.5':
+    resolution: {integrity: sha512-+V8XG6MEvczw3Ufz7+ABSSCaVdFCYKRHvVDmXpS65AUeQTDEqmJz3xx2UiYYdASA6Gb2yIKdVztTcRjHFtiAnw==}
+    engines: {node: '>=12.11.0'}
 
   '@protobufjs/aspromise@1.1.2':
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -1269,6 +1302,13 @@ packages:
   pretty-ms@9.2.0:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
+
+  primeicons@7.0.0:
+    resolution: {integrity: sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==}
+
+  primevue@4.3.5:
+    resolution: {integrity: sha512-KYjLrf7W96qVOFdX2nyap5IrJIEF8qEfLaHpMPw+H3SCd7zV6uiIrOYBNvovk677rhjBGpSjEbxTFY/K+i/DMA==}
+    engines: {node: '>=12.11.0'}
 
   protobufjs@7.4.0:
     resolution: {integrity: sha512-mRUWCc3KUU4w1jU8sGxICXH/gNS94DvI1gxqDvBzhj1JpcsimQkYiOJfwsPUykUI5ZaspFbSgmBLER8IrQ3tqw==}
@@ -2124,6 +2164,33 @@ snapshots:
 
   '@polka/url@1.0.0-next.29': {}
 
+  '@primeuix/styled@0.6.4':
+    dependencies:
+      '@primeuix/utils': 0.5.4
+
+  '@primeuix/styles@1.1.1':
+    dependencies:
+      '@primeuix/styled': 0.6.4
+
+  '@primeuix/themes@1.1.1':
+    dependencies:
+      '@primeuix/styled': 0.6.4
+
+  '@primeuix/utils@0.5.4': {}
+
+  '@primevue/core@4.3.5(vue@3.5.14)':
+    dependencies:
+      '@primeuix/styled': 0.6.4
+      '@primeuix/utils': 0.5.4
+      vue: 3.5.14
+
+  '@primevue/icons@4.3.5(vue@3.5.14)':
+    dependencies:
+      '@primeuix/utils': 0.5.4
+      '@primevue/core': 4.3.5(vue@3.5.14)
+    transitivePeerDependencies:
+      - vue
+
   '@protobufjs/aspromise@1.1.2': {}
 
   '@protobufjs/base64@1.1.2': {}
@@ -2763,6 +2830,18 @@ snapshots:
   pretty-ms@9.2.0:
     dependencies:
       parse-ms: 4.0.0
+
+  primeicons@7.0.0: {}
+
+  primevue@4.3.5(vue@3.5.14):
+    dependencies:
+      '@primeuix/styled': 0.6.4
+      '@primeuix/styles': 1.1.1
+      '@primeuix/utils': 0.5.4
+      '@primevue/core': 4.3.5(vue@3.5.14)
+      '@primevue/icons': 4.3.5(vue@3.5.14)
+    transitivePeerDependencies:
+      - vue
 
   protobufjs@7.4.0:
     dependencies:

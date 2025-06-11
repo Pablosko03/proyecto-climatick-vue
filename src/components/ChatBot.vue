@@ -3,8 +3,8 @@
     <div class="chat-window">
         <div class="chat-header">
         <span>ClimaBot</span>
-        <button @click="$emit('close')">✖</button>
-        </div>
+        <Button class="close-button" @click="$emit('close')"  icon="pi pi-times" severity="primary" rounded />
+    </div>
         
         <div class="chat-body">
         
@@ -25,70 +25,77 @@
     </div>
 </template>
 
-<script setup>
-import { onMounted, ref } from 'vue'
+<script>
+import { Button } from 'primevue'
 
-const userInput = ref('')
-const messages = ref([])
-
-const botAvatar = 'https://img.freepik.com/vector-gratis/chatbot-mensaje-chat-vectorart_78370-4104.jpg?semt=ais_hybrid&w=740'
-const userAvatar = 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
-
-onMounted(() => {
-    messages.value.push({
-        sender : 'bot',
-        text : '¡Hola! Soy ClimaBot. Dime el nombre de una ciudad o pueblo y te diré cómo está el clima.'
-    })
-})
-
-const sendMessage = async () => {
-    const question = userInput.value.trim()
-    if (!question) return
-
-  // Añade el mensaje del usuario
-    messages.value.push({ sender: 'user', text: question })
-    userInput.value = ''
-
-try {
-    const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
+export default {
+    data() {
+        return {
+            userInput: '',
+            messages: [],
+            botAvatar: 'https://img.freepik.com/vector-gratis/chatbot-mensaje-chat-vectorart_78370-4104.jpg?semt=ais_hybrid&w=740',
+            userAvatar: 'https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg'
+        }
     },
-        body: JSON.stringify({ question })
-    })
 
-    const data = await response.json()
-    messages.value.push({ sender: 'ClimaBot', text: data.text || 'Sin respuesta.' })
-} catch (error) {
-    messages.value.push({ sender: 'ClimaBot', text: 'Error al conectar con el bot.' })
-    console.error(error)
-}  
+    components:{
+        Button
+    },
+
+    mounted() {
+        this.messages.push({
+            sender: 'bot',
+            text: '¡Hola! Soy ClimaBot. Dime el nombre de una ciudad o pueblo y te diré cómo está el clima.'
+        })
+    },
+    methods: {
+        async sendMessage() {
+            const question = this.userInput.trim()
+            if (!question) return
+
+            // Añade el mensaje del usuario
+            this.messages.push({ sender: 'user', text: question })
+            this.userInput = ''
+
+            try {
+                const response = await fetch('https://cloud.flowiseai.com/api/v1/prediction/0668fda7-8cfa-4fa0-9748-5603d95f6132', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question })
+                })
+
+                const data = await response.json()
+                this.messages.push({ sender: 'ClimaBot', text: data.text || 'Sin respuesta.' })
+            } catch (error) {
+                this.messages.push({ sender: 'ClimaBot', text: 'Error al conectar con el bot.' })
+                console.error(error)
+            }
+        }
+    }
 }
+
+
 </script>
 
 <style scoped>
 .chat-window {
     width: 300px;
     height: 400px;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    color: black;
 }
 
 .chat-header {
-    background: #4a90e2;
-    color: white;
+    border-bottom: solid 2px #2128bd;
+    color: #2b2b2b;
+    border-radius: 12px 12px 0 0;
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    font-family:Roboto, sans-serif;
+    font-size: 18px;
 }
 
 .chat-body {
@@ -105,6 +112,10 @@ try {
 .bot {
     text-align: left;
     margin-bottom: 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    
 }
 
 .chat-input {
@@ -114,17 +125,26 @@ try {
 
 .chat-input input {
     flex: 1;
-    padding: 10px;
+    padding: 9px;
+    padding-left: 1rem;
     border: none;
     outline: none;
+    font-family: Roboto, sans-serif;
 }
 
 .chat-input button {
     padding: 10px;
-    background: #4a90e2;
+    background: #2128bd;
     color: white;
     border: none;
     cursor: pointer;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+
+    &:hover {
+        background: #868cf9;
+    }
 }
 .avatar {
     width: 32px;
@@ -137,5 +157,16 @@ try {
     align-items: flex-start;
     margin-bottom: 10px;
     
+}
+
+.close-button{
+    background: #2128bd;
+    color: white;
+    cursor: pointer;
+    border: none !important;
+}
+
+.close-button:hover {
+    background: #868cf9 !important;
 }
 </style>

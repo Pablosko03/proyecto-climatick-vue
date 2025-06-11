@@ -1,7 +1,7 @@
 <!-- src/components/Header.vue -->
 <template>
     <header class="header">
-        <h1 class="title">Climatik</h1>
+        <RouterLink to="/"><h1 class="title">Climatik</h1></RouterLink>
         <nav class="nav">
             <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
             <button id="Registro" @click="$router.push('/register')">Registrarse</button>
@@ -22,10 +22,12 @@
     gap: 1rem;
 }
 .title{
-    font-family: "Nothing You Could Do";
+    font-family: "Roboto", sans-serif;
+    font-size: 2rem;
     font-weight: 400;
     font-style: normal;
 }
+
 </style>
 
 <script>

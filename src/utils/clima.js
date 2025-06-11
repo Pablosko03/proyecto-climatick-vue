@@ -76,9 +76,11 @@ export async function obtenerClima() {
 
             obtenerPronostico(ciudad);
             return true
+            return datos;
         } else {
             resultado.innerHTML = `Ciudad no encontrada.`;
         }
+        return null;
     } catch (error) {
             resultado.innerHTML = "Error al obtener los datos. Verifica tu conexión.";
     }
@@ -115,8 +117,9 @@ export async function obtenerPronostico(ciudad) {
         const icon = item.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
 
-        const boton = document.createElement("button");
+        const boton = document.createElement("div");
         boton.classList.add("dia-btn");
+        boton.classList.add ("bg-blue-300", "text-gray-600", "text-3xl","font-(family-name:Roboto,sans-serif)","font-semibold","max-w-sm" ,"rounded-full", "flex", "flex-row","justify-center", "items-center", "gap-20", "hover:bg-[#2128bd]", "transition-colors", "duration-300",  "hover:text-white", "p-4", "m-2");
         boton.innerHTML = `
             <img src="${iconUrl}" alt="${descripcion}" />
             <div>${new Date(fecha).toLocaleDateString("es-ES", {
