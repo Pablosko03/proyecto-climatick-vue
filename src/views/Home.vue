@@ -10,12 +10,12 @@
           <span v-if="ciudad" class="clear-icon">X</span>
         </div>
       </div>
-      <button @click="obtenerClima">Buscar</button>
+      <button @click="getWeather">Buscar</button>
     </div>
-    <ul class="options" id="sugerencias"></ul>
+    <ul class="options" id="sugerencias" @click="getWeather"></ul>
 
     <div class="boxflex">
-      <div class="weather-section">
+      <div class="weather-section" :class="{ oculto: !shoWeather }">
         <div class="weather-today">
           <div id="resultado"></div>
           <div class="icon-center">
@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <div class="map">
+      <div class="map" :class="{ centrado: !shoWeather }">
         <Mapa />
       </div>
     </div>
@@ -42,9 +42,20 @@
 </template>
 
 <style>
-
+.oculto {
+  display: none;
+}
+.weather-section {
+  flex: 1;
+}
 .map{
-  width: 800px;
+  flex: 1;
+  transition: all 0.5s ease;
+}
+.map.centrado {
+  margin: 0 auto;
+  flex: 0 1 100%;
+  max-width: 800px;
 }
 .map h3{
   text-align: center;
@@ -52,6 +63,9 @@
 .boxflex {
   display: flex;
   justify-content: space-between;
+  align-items: stretch;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -173,7 +187,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from '@/firebase/config'
 import LogIn from "./LogIn.vue";
 import Mapa from "@/components/Mapa.vue";
-import { ref } from 'vue'
 import ChatButton from '@/components/ChatButton.vue'
 
 
@@ -181,7 +194,8 @@ export default {
   data() {
     return {
       ciudad: '',
-      isLoggedIn : false
+      isLoggedIn : false,
+      shoWeather : false
     };
   },
   components: {
@@ -191,10 +205,10 @@ export default {
   },
   methods: {
     sugerirCiudades,
-    obtenerClima,
     limpiarBusquedaInput() {
       this.ciudad = '';
       limpiarBusqueda();
+      this.shoWeather = false
     },
     funcionEnter,
 
@@ -216,6 +230,10 @@ export default {
       document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
       window.onload = this.updateUI;
     },
+    async getWeather(){
+      const exito = await obtenerClima()
+      this.shoWeather = exito
+    }
 
   },
 

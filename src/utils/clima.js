@@ -47,7 +47,7 @@ export async function obtenerClima() {
 
     if (!ciudad) {
         resultado.innerHTML = "Por favor, ingresa una ciudad.";
-        return;
+        return false;
     }
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`;
@@ -75,6 +75,7 @@ export async function obtenerClima() {
             resultado.innerHTML = `<strong>${datos.name}</strong><br>`;
 
             obtenerPronostico(ciudad);
+            return true
         } else {
             resultado.innerHTML = `Ciudad no encontrada.`;
         }
