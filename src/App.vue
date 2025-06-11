@@ -4,7 +4,6 @@
     <Header></Header>
     <Sidebar></Sidebar>
     <router-view />
-    <ChatButton />
     <Popup :show="showPopup" @close="showPopup = false" />
   </div>
 

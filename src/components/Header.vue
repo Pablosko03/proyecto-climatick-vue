@@ -3,9 +3,9 @@
     <header class="header">
         <RouterLink to="/"><h1 class="title">Climatik</h1></RouterLink>
         <nav class="nav">
-            <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
-            <button id="Registro" @click="$router.push('/register')">Registrarse</button>
-            <button id="LogOut" @click="logout()">Logout</button>
+            <button id="LogIn" v-if="!isLoggedIn" @click="$router.push('/login')">Iniciar sesión</button>
+            <button id="Registro" v-if="!isLoggedIn" @click="$router.push('/register')">Registrarse</button>
+            <button id="LogOut" v-if="isLoggedIn" @click="logout()">Logout</button>
         </nav>
     </header>
 </template>
@@ -43,28 +43,22 @@ export default {
             
         async logout() {
             await signOut(auth);
-            localStorage.setItem('isLoggedIn', 'false');
-            this.updateUI();
+            
         },
 
-        updateUI() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-            document.getElementById('LogIn').style.display = isLoggedIn ? 'none' : 'inline-block';
-            document.getElementById('Registro').style.display = isLoggedIn ? 'none' : 'inline-block';
-            document.getElementById('LogOut').style.display = isLoggedIn ? 'inline-block' : 'none';
-            window.onload = this.updateUI;
-        },
+        
     },
 
     data(){
         return {
             user: null,
+            isLoggedIn : false
         }
     },
     
     mounted() {
         onAuthStateChanged(auth,(user) =>{
+            this.isLoggedIn = !!user;
             if(user){
                 this.user = user;
             }else{

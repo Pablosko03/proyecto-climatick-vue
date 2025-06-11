@@ -10,18 +10,18 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
             }
         },
         methods : {
-            login(){
+            login() {
                 signInWithEmailAndPassword(auth, this.email, this.password)
-                    .then((userCredential) => {
-                        const user = userCredential.user;
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                this.message = errorMessage
-            });
-            },
-
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    this.message = 'Usuario logueado ' + user.email;
+                    this.$router.push('/'); 
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    this.message = errorMessage;
+                });
+        },
             updateUI() {
                 const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
@@ -37,7 +37,7 @@ import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
                     const uid = user.uid
                     this.message = 'Usuario logueado ' + user.email
                     localStorage.setItem('isLoggedIn', 'true');
-                    this.updateUI();
+                    //this.updateUI();
                     this.$router.push('/');
                 }else{
                     this.message = 'No hay usuario logueado'

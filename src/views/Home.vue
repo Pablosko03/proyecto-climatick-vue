@@ -273,12 +273,12 @@ export default {
 
     login() {
       localStorage.setItem('isLoggedIn', 'true');
-      this.updateUI();
+      //this.updateUI();
     },
 
     logout() {
       localStorage.removeItem('isLoggedIn');
-      this.updateUI();
+      //this.updateUI();
     },
 
     updateUI() {
@@ -307,6 +307,9 @@ export default {
         this.isLoggedIn = false
         this.message = 'No hay usuario logueado'
       }
+      
+      
+        console.log("onAuthStateChanged ejecutado", user);
     })
   }
 };

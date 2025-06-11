@@ -56,7 +56,7 @@ import { setDoc, doc } from "firebase/firestore";
                     this.message = 'Usuario logueado ' + user.email
                     localStorage.setItem('isLoggedIn', 'true');
                     this.$router.push('/');
-                    this.updateUI();
+                    //this.updateUI();
                 }else{
                     this.message = 'No hay usuario logueado'
                 }

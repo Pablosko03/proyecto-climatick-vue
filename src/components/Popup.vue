@@ -9,7 +9,7 @@ export default {
     methods: {
         closePopup() {
             this.$emit('close');
-            this.updateUI();
+            //this.updateUI();
         },
 
         updateUI() {
