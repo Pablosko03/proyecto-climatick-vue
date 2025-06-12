@@ -81,14 +81,14 @@ export default {
             if (user) {
                 this.user = user;
                 console.log('usuario ha iniciado sesion')
-                // Primero intenta recuperar el nombre desde localStorage
+                
                 const storedName = localStorage.getItem('username');
                 console.log('storedName', storedName)
                 if (storedName) {
                     this.username = storedName;
                     console.log('primer if')
                 } else {
-                    // Si no está en localStorage, lo carga desde Firestore
+                    
                     try {
                         const userDoc = await getDoc(doc(db, 'users', user.uid));
                         if (userDoc.exists()) {
