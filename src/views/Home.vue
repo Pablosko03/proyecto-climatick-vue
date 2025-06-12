@@ -1,7 +1,7 @@
 <!-- src/views/Home.vue -->
 <template>
   <div class="home">
-    <h2 class="title">Consulta el clima</h2>
+    <h2>Climatik el clima a un click</h2>
     <div class="search-container">
       <div class="input-wrapper">
         <input type="text" id="ciudad" placeholder="Introduce una ciudad" v-model="ciudad" @input="sugerirCiudades"
@@ -40,6 +40,7 @@
     <div class="chatbot">
       <ChatButton v-if="isLoggedIn" />
     </div>
+    <div class="banner"></div>
   </div>
 </template>
 
@@ -74,17 +75,23 @@
   flex-wrap: wrap;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
 
 .home {
   display: flex;
   flex-direction: column;
   height: 900px;
   justify-content: space-between;
+
+  & h2 {
+    text-align: center;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #fff;
 }
+  }
+
 
 .search-container {
   display: flex;
@@ -207,6 +214,15 @@ input {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.banner {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    background-image: url("../public/img/banner.jpg");
+
 }
 </style>
 

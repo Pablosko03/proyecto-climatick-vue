@@ -36,9 +36,6 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.2.3
         version: 5.2.4(vite@6.3.5(@types/node@22.15.22)(jiti@2.4.2)(lightningcss@1.30.1))(vue@3.5.14)
-      daisyui:
-        specifier: ^5.0.43
-        version: 5.0.43
       vite:
         specifier: ^6.2.4
         version: 6.3.5(@types/node@22.15.22)(jiti@2.4.2)(lightningcss@1.30.1)
@@ -968,9 +965,6 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-
-  daisyui@5.0.43:
-    resolution: {integrity: sha512-2pshHJ73vetSpsbAyaOncGnNYL0mwvgseS1EWy1I9Qpw8D11OuBoDNIWrPIME4UFcq2xuff3A9x+eXbuFR9fUQ==}
 
   debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
@@ -2527,8 +2521,6 @@ snapshots:
       which: 2.0.2
 
   csstype@3.1.3: {}
-
-  daisyui@5.0.43: {}
 
   debug@4.4.1:
     dependencies:
