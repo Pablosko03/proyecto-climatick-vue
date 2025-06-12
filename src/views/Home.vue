@@ -1,9 +1,7 @@
 <!-- src/views/Home.vue -->
 <template>
   <div class="home">
-    <div class="slogan 'Bricolage Grotesque', sans-serif">
-    <p><span>Climatik</span> el clima a un <span>click</span></p>
-  </div>
+    <h2>Climatik el clima a un click</h2>
     <div class="search-container">
       <div class="input-wrapper">
         <input type="text" id="ciudad" placeholder="Introduce una ciudad" v-model="ciudad" @input="sugerirCiudades"
@@ -42,6 +40,7 @@
     <div class="chatbot">
       <ChatButton v-if="isLoggedIn" />
     </div>
+    <div class="banner"></div>
   </div>
 </template>
 
@@ -59,35 +58,23 @@
   justify-content: space-between;
 }
 
-.slogan{
-  padding: 30px 20px;
-  height: 50px;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 500;
-  font-size: 25px; 
-  color:#fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-span{
-  color: #2128bd;
-  font-size: 30px;
-  font-weight: 800;
-
-  &:hover{
-    color:#868cf9;
-  }
-}
-
 
 .home {
   display: flex;
   flex-direction: column;
   height: 900px;
   justify-content: space-between;
+
+  & h2 {
+    text-align: center;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #fff;
 }
+  }
+
 
 .search-container {
   display: flex;
@@ -210,6 +197,15 @@ input {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.banner {
+    height: 150px;
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    background-image: url("../public/img/banner.jpg");
+
 }
 </style>
 

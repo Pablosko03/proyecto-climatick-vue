@@ -1,7 +1,9 @@
 <!-- src/components/Header.vue -->
 <template>
     <header class="header">
-        <RouterLink to="/"><h1 class="title">Climatik</h1></RouterLink>
+        <RouterLink to="/">
+            <h1 class="title">Climatik</h1>
+        </RouterLink>
         <nav class="nav">
             <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
             <button id="Registro" @click="$router.push('/register')">Registrarse</button>
@@ -12,16 +14,19 @@
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.nav{
+
+.nav {
     display: flex;
     gap: 1rem;
 }
-.title{
+
+.title {
     font-family: "Roboto", sans-serif;
     font-size: 2rem;
     font-weight: 400;
@@ -40,7 +45,7 @@ export default {
 
     },
     methods: {
-            
+
         async logout() {
             await signOut(auth);
             localStorage.setItem('isLoggedIn', 'false');
@@ -57,17 +62,17 @@ export default {
         },
     },
 
-    data(){
+    data() {
         return {
             user: null,
         }
     },
-    
+
     mounted() {
-        onAuthStateChanged(auth,(user) =>{
-            if(user){
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
                 this.user = user;
-            }else{
+            } else {
                 this.user = null;
             }
         })
