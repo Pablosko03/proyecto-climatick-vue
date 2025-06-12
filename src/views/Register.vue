@@ -27,6 +27,7 @@ import { setDoc, doc } from "firebase/firestore";
                         })
                         .then(() => {
                             console.log("Documento escrito correctamente");
+                            localStorage.setItem("username", this.name)
                         })
                         .catch((error) => {
                             console.error("Error adding document: ", error);
