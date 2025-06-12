@@ -1,11 +1,13 @@
 <!-- components/ChatBot.vue -->
 <template>
+    
     <div class="chat-window">
         <div class="chat-header">
         <span>ClimaBot</span>
         <Button class="close-button" @click="$emit('close')"  icon="pi pi-times" severity="primary" rounded />
     </div>
         
+    
         <div class="chat-body">
         
         <div v-for="(msg, index) in messages" :key="index" :class="['message', msg.sender]">
@@ -17,7 +19,7 @@
         <p class="message-text">{{ msg.text }}</p>
         </div>
         </div>
-
+        
         <div class="chat-input">
         <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Escribe tu mensaje..." />
         <button @click="sendMessage">Enviar</button>
@@ -29,6 +31,7 @@
 import { Button } from 'primevue'
 
 export default {
+    
     data() {
         return {
             userInput: '',
