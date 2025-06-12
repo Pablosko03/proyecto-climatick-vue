@@ -2,7 +2,8 @@
 <template>
     <header class="header">
         <RouterLink to="/">
-            <h1 class="title">Climatik</h1>
+            <img class="logo" src="/img/climatik-white.png" alt="">
+            <!-- <h1 class="title">Climatik</h1> -->
         </RouterLink>
         <nav class="nav">
             <button id="LogIn" @click="$router.push('/login')">Iniciar sesión</button>
@@ -26,11 +27,9 @@
     gap: 1rem;
 }
 
-.title {
-    font-family: "Roboto", sans-serif;
-    font-size: 2rem;
-    font-weight: 400;
-    font-style: normal;
+.logo{
+    width: 100px;
+    height: auto;
 }
 
 </style>
