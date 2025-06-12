@@ -61,13 +61,14 @@ export default {
     },
 
     mounted() {
-        onAuthStateChanged(auth,(user) =>{
-            if(user){
-                this.user = user;
-            } else {
-                this.user = null;
-            }
-        })
-    }
+    onAuthStateChanged(auth, (user) => {
+        this.isLoggedIn = !!user;
+        if (user) {
+            this.user = user;
+        } else {
+            this.user = null;
+        }
+    });
+}
 };
 </script>
